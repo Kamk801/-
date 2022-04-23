@@ -8,7 +8,7 @@ typedef struct {
 }sqlist;
 
 int add[20] = { 2,3,4,5,6,7,8,9,1,10,11,12,13,14,15,16,17,18,19,20 };
-int ShowList(sqlist L)						//打印顺序表
+/*int ShowList(sqlist L)						//打印顺序表
 {
 	if (L.length == 0)
 	{
@@ -21,7 +21,7 @@ int ShowList(sqlist L)						//打印顺序表
 	}
 
 	return true;
-}
+}*/
 void initlist(sqlist& L) {
 	L.length = 20;
 	for (int i = 0; i < L.length; i++) {
