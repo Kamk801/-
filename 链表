@@ -1,0 +1,125 @@
+//链表
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct LNode {
+	int data;
+	int *next;
+}LNode,*LinkList;
+bool initlist(LinkList &L) {
+	L = (LNode*)malloc(sizeof(LNode));
+	if (L == NULL) {
+		return false;
+	}
+	L->next = NULL;
+	return true;
+}
+bool emptylist(LinkList L) {
+	return (L->next == NULL);
+}
+//后插操作:在p结点之后插入元素num
+bool InsertNextNode(LNode* p,int num) {
+	if (p == NULL) { //i值不合法
+		return false;
+	}
+	LNode* s = (LNode*)malloc(sizeof(LNode));
+	s->data = num;
+	s->next = p->next;
+	p->next = s;
+	return true;
+}
+//前插操作:在p结点之前插入元素num
+bool InsertPriorNode(LNode* p, int num) {
+	if (p == NULL) {
+		return false;
+	}
+	int temp = 0;
+	LNode* s = (LNode*)malloc(sizeof(LNode));
+	if (s == NULL) {       //内存分配失败
+		return false;
+	}
+	s->next = p->next;
+	p->next = s;
+	s->data = p->data;
+	p->data = num;
+	return true;
+
+}
+//有头结点  按位序插入   更加适合用这个方法
+bool ListInsert(LinkList& L, int i,int num) {
+	if (i < 1) {
+		return false;
+	}
+	LNode* p;
+	int j = 0;
+	p = L;
+	while(j<i-1 && p!=NULL) {
+		p = p->next;
+		j++;
+	}
+	return InsertNextNode(p,num);
+}
+//无头结点  按位序插入
+bool nListInsert(LinkList& L, int i, int num) {
+	if (i < 1) {
+		return false;
+	}
+
+	if (i == 1) {
+		LNode* s = (LNode*)malloc(sizeof(LNode));
+		s->data = num;
+		s->next = L;
+		L = s;
+		return true;
+	}
+	LNode* p;
+	int j = 0;
+	p = L;
+	while (j < i - 1 && p != NULL) {
+		p = p->next;
+		j++;
+	}
+	return InsertNextNode(p, num);
+}
+//带头结点  按位序删除
+bool DelList(LinkList& L,int i,int &temp) {
+	if (i < 1) {
+		return false;
+	}
+	LNode* p;
+	int j = 0;
+	p = L;
+	while (j < i - 1 && p != NULL) {
+		p = p->next;
+		j++;
+	}
+	if (p == NULL) {
+		return false;
+	}
+	if (p->next == NULL) {
+		return false;
+	}
+	LNode* q = p->next;
+	temp = q->data;
+	p->next = q->next;
+	free(q);
+	return true;
+}
+//删除指定结点p
+bool DelNode(LNode* p, int& num) {
+	if (p == NULL) {
+		return false;
+	}
+	if (p->next == NULL) {
+		//循环寻找p的前结点  时间复杂度  O(n)
+	}
+	LNode* q = p->next;
+	p->data = q->data;
+	p->next = q->next;
+	free(q);
+	return true;
+}
+int main() {
+	LinkList L;//L为头结点
+	initlist(L);
+
+}
