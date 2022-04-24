@@ -3,8 +3,9 @@
 #include<stdlib.h>
 typedef struct LNode {
 	int data;
-	int *next;
+	LNode *next;
 }LNode,*LinkList;
+//初始化链表 头结点
 bool initlist(LinkList &L) {
 	L = (LNode*)malloc(sizeof(LNode));
 	if (L == NULL) {
@@ -13,8 +14,30 @@ bool initlist(LinkList &L) {
 	L->next = NULL;
 	return true;
 }
+//判断表为空
 bool emptylist(LinkList L) {
 	return (L->next == NULL);
+}
+//按位查找,返回第i个元素  有头结点
+LNode* GetElem(LinkList L, int i) {
+	if (i < 0) {
+		return NULL;
+	}
+	int len = 0;
+	LNode* p = L;
+	while (p != NULL  &&  len<i) {  //循环到第i个结点
+		p = p->next;
+		len++;
+	}
+	return p;
+}
+//按值查找    有头结点
+LNode* LocateElem(LinkList L, int num) {
+	LNode* p = L->next;
+	while (p!=NULL && p->data !=num) {
+		p = p->next;
+	}
+	return p;
 }
 //后插操作:在p结点之后插入元素num
 bool InsertNextNode(LNode* p,int num) {
@@ -49,14 +72,8 @@ bool ListInsert(LinkList& L, int i,int num) {
 	if (i < 1) {
 		return false;
 	}
-	LNode* p;
-	int j = 0;
-	p = L;
-	while(j<i-1 && p!=NULL) {
-		p = p->next;
-		j++;
-	}
-	return InsertNextNode(p,num);
+	LNode* q = GetElem(L,i-1);   //找到第i-1个结点
+	return InsertNextNode(q,num);
 }
 //无头结点  按位序插入
 bool nListInsert(LinkList& L, int i, int num) {
@@ -85,13 +102,7 @@ bool DelList(LinkList& L,int i,int &temp) {
 	if (i < 1) {
 		return false;
 	}
-	LNode* p;
-	int j = 0;
-	p = L;
-	while (j < i - 1 && p != NULL) {
-		p = p->next;
-		j++;
-	}
+	LNode* p = GetElem(L,i-1);
 	if (p == NULL) {
 		return false;
 	}
@@ -117,6 +128,48 @@ bool DelNode(LNode* p, int& num) {
 	p->next = q->next;
 	free(q);
 	return true;
+}
+//求表的长度
+int Length(LinkList L) {
+	int length = 0;
+	LNode* p = L;
+	while (p->next != NULL) {
+		p = p->next;
+		length++;
+	}
+	return length;
+}
+//尾插法建立单链表  正向建立单链表
+LinkList List_Tailnser(LinkList& L) {
+	int x;
+	L = (LinkList)malloc(sizeof(LinkList));
+	LNode* p, * s = L;
+	scanf("%d", x);
+	while (x != 9999) {
+		s = (LNode*)malloc(sizeof(LNode));
+		s->data = x;
+		s = p->next;
+		p = s;
+		scanf("%d", x);
+	}
+	p->next = NULL;
+	return L;
+}
+//头插法建立单链表  逆向建立单链表     **重要应用**   链表的逆置
+LinkList List_HeadInset(LinkList& L) {
+	int x;
+	L = (LinkList)malloc(sizeof(LinkList));
+	L->next = NULL;
+	LNode* s ;
+	scanf("%d", x);
+	while (x != 9999) {    //输入9999表示结束
+		s = (LNode*)malloc(sizeof(LNode));
+		s->data = x;
+		s->next = L->next;
+		L->next = s;
+		scanf("%d", x);
+	}
+	return L;
 }
 int main() {
 	LinkList L;//L为头结点
