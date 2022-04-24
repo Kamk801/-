@@ -1,0 +1,49 @@
+//循环双链表
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct DNode {
+	int data;
+	DNode *prior,*next;
+}DNode,*DLinkList;
+//初始化头结点
+bool InitDLinkList(DLinkList L) {
+	L = (DNode*)malloc(sizeof(DNode));
+	if (L == NULL) {
+		return false;
+	}
+	L->prior = L;
+	L->next = L;
+	return true;
+}
+//判断循环双链表是否为空
+bool Empty(DLinkList L) {
+	if (L->next == L) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//判断结点p是否为循环双链表的表尾结点
+bool isTail(DLinkList L,DNode* p) {
+	if (p->next = L) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//在p结点之后插入s结点
+bool InsertNextNode(DNode* p, DNode* s) {
+	s->next = p->next;
+	p->next->prior = s;
+	s->prior = p;
+	p->next = s;
+}
+//删除p的后继结点q
+bool DelNextNode(DNode* p) {
+	DNode* q = p->next;
+	p->next = q->next;
+	q->next->prior = p;
+	free(q);
+}
