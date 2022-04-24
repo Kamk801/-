@@ -1,0 +1,17 @@
+//线性表的动态分配
+#include<stdio.h>
+#include<stdlib.h>
+#define Maxsize 10   //默认的最大长度
+typedef struct LNode{
+	int data;
+	int next;
+};
+//等价于
+typedef struct {
+	int data;
+	int next;
+}SList[Maxsize];
+int main() {
+	struct LNode a[Maxsize];
+	SList  a;
+}
