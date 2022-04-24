@@ -1,0 +1,34 @@
+//循环单链表
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct LNode {
+	int data;
+	LNode *next;
+}LNode,*LinkList;
+//初始化头结点
+bool InitList(LinkList& L) {
+	L = (LNode*)malloc(sizeof(LNode));
+	if (L == NULL) {
+		return false;
+	}
+	L->next = L;
+	return true;
+}
+//判断循环单链表shifouweikon
+bool Empty(LinkList L) {
+	if (L->next == NULL) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//判断结点p是否为循环单链表的表尾结点
+bool isTail(LinkList L,LNode* p) {
+	if (p->next == L) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
