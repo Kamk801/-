@@ -1,0 +1,73 @@
++//双链表
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct DNode {
+	int data;
+	struct DNode *prior,*next;
+}DNode,*DLinkList;
+//初始化双链表  头结点
+bool InitList(DLinkList& L) {
+	L = (DNode*)malloc(sizeof(DNode));
+	if (L == NULL) {
+		return false;
+	}
+	L->prior = NULL;
+	L->next = NULL;
+	return true;
+}
+//后插操作    在p结点之后插入s结点
+bool InsertDnode(DNode* p, DNode* s) {
+	if (p == NULL || s == NULL) {    //非法参数
+		return false;
+	}
+	s->next = p->next;
+	if (p->next !=NULL) {
+		p->next->prior = s;
+	}
+	s->prior = p;
+	p->next = s;
+	return true;
+}
+//删除p的后继结点q
+bool DeletNextDNode(DNode* p) {
+	if (p == NULL) {
+		return false;
+	}
+	DNode* q = p->next;
+	if (q == NULL) {
+		return false;
+	}
+	p->next = q->next;
+	if (q->next != NULL) {
+		q->next->prior = p;
+	}
+	free(q);
+	return true;
+}
+//销毁双链表
+void DestroyList(DLinkList& L) {
+	while (L->next != NULL) {
+		DeletNextDNode(L);
+	}
+	free(L);//释放头结点
+	L = NULL;//头指针指向NULL
+}
+//双链表遍历  后向遍历
+void BackShow(DLinkList L) {
+	DNode* p = L->next;
+	while (p != NULL) {
+		printf("%d", p->data);
+		p = p->next;
+	}
+}
+//从p结点前向遍历
+void HeadShow(DNode* p) {
+	while (p->prior != NULL) {
+		printf("%d", p->data);
+		p = p->prior;
+	}
+}
+int main() {
+	DLinkList L;
+	InitList(L);
+}
