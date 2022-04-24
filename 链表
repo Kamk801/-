@@ -173,6 +173,16 @@ LinkList List_HeadInset(LinkList& L) {
 }
 int main() {
 	LinkList L;//L为头结点
-	initlist(L);
-
+	List_Tailnser(L);
+	printf("%d",Length(L));
+	ListInsert(L, 5, 66);
+	printf("%d", Length(L));
+	int temp = 0;
+	if (DelList(L, 3, temp)) {
+		printf("删去的是", temp);
+	}
+	else {
+		printf("删去失败");
+	}
+	printf("%d", Length(L));
 }
