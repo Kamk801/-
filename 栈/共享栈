@@ -1,0 +1,21 @@
+//共享栈    两个栈共享一片空间
+#include<stdio.h>
+#include<stdlib.h>
+#define Maxsize 10
+typedef struct {
+	int data[Maxsize];
+	int top0;
+	int top1;
+}stack;
+void InitShare(stack& L) {
+	L.top0 == -1;
+	L.top1 == Maxsize;
+}
+bool Push(stack& L,int elem1,int elem2) {
+	if (L.top0 + 1 == L.top1) {
+		return false;
+	}
+	L.data[--L.top1] = elem1;
+	L.data[++L.top0] = elem2;
+	return true;
+}
