@@ -87,3 +87,7 @@ bool GetTop(stack L, int& num) {
 	num = L.data[L.top];
 	return true;
 }
+//清空栈
+void destoystack(stack &L){
+    L.top=-1;
+}
