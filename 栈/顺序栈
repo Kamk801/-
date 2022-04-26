@@ -1,0 +1,89 @@
+//顺序栈
+#include<stdio.h>
+#include<stdlib.h>
+#define Maxsize 10
+typedef struct {
+	int data[Maxsize];
+	int top;
+}stack;
+//初始化
+void initstack(stack& L) {
+
+	L.top = -1;
+}
+//判空   指针指向元素下一个
+bool stackEmpty(stack L) {
+	if (L.top == -1) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//判空   指针指向元素
+bool Empty(stack L) {
+	if (L.top == 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//判断栈满   指针指向元素下一个
+bool Full(stack L) {
+	if (L.top == Maxsize - 1) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//判断栈满   指针指向元素
+bool Fulls(stack L) {
+	if (L.top == Maxsize ) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//进栈   指针指向元素下一个
+bool Push(stack& L, int elem) {
+	if (L.top == Maxsize-1) {
+		return false;
+	}
+	L.data[++L.top] = elem;
+	return true;
+}
+//进栈   指针指向元素
+bool Pushelem(stack& L, int elem) {
+	if (L.top == Maxsize ) {
+		return false;
+	}
+	L.data[L.top++] = elem;
+	return true;
+}
+//出栈   指针指向元素下一个
+bool pop(stack& L, int& num) {
+	if (L.top == -1) {
+		return false;
+	}
+	L.data[L.top--] = num;
+	return true;
+}
+//出栈   指针指向元素
+bool popelem(stack& L, int& num) {
+	if (L.top == 0) {
+		return false;
+	}
+	L.data[--L.top] = num;
+	return true;
+}
+//读栈顶元素
+bool GetTop(stack L, int& num) {
+	if (L.top == -1) {
+		return false;
+	}
+	num = L.data[L.top];
+	return true;
+}
