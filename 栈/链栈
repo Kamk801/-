@@ -1,0 +1,100 @@
+//链栈   和单链表一样   推荐不带头结点
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct {
+	int data;
+	stack* next;
+}stack,*Linklist;
+
+bool initstack(Linklist& L) {
+	L = (stack*)malloc(sizeof(stack));
+	if (L == NULL) {
+		return false;
+	}
+	L->next = NULL;
+	return true;
+}
+//不带头结点
+void init(Linklist& L) {
+	L = NULL;
+}
+//判空   有头结点
+bool stackEmpty(Linklist& L) {
+	if (L->next == NULL) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//判空   无头结点
+bool Empty(Linklist& L) {
+	if (L == NULL) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//头插法添加元素  有头结点
+bool push(Linklist& L,int elem) {
+	stack* p=(stack*)malloc(sizeof(stack));
+	if (p == NULL) {
+		return false;
+	}
+	p->data = elem;
+	p->next = L->next;
+	L->next = p;
+	return true;
+}
+//头插法添加元素  无头结点
+bool pushelem(Linklist& L, int elem) {
+	stack* p = (stack*)malloc(sizeof(stack));
+	if (p == NULL) {
+		return false;
+	}
+	p->data = elem;
+	p->next = L;
+	L = p;
+	return true;
+}
+//从头删除元素   有头结点
+bool pop(Linklist& L, int& num) {
+	if (L->next == NULL) {
+		return false;
+	}
+	stack* p = L->next;
+	L->next = p->next;
+	num = p->data;
+	free(p);
+	return true;
+}
+//从头删除元素   无头结点
+bool pop(Linklist& L, int& num) {
+	if (L == NULL) {
+		return false;
+	}
+	stack* p = L;
+	L = p->next;
+	num = p->data;
+	free(p);
+	return true;
+}
+//获取栈顶元素  有头结点
+bool getelem(Linklist& L, int& num) {
+	if (L->next == NULL) {
+		return false;
+	}
+	stack* p = L->next;
+	num = p->data;
+	return true;
+}
+//获取栈顶元素  无头结点
+bool getelem(Linklist& L, int& num) {
+	if (L == NULL) {
+		return false;
+	}
+	stack* p = L;
+	num = p->data;
+	return true;
+}
