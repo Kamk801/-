@@ -68,7 +68,7 @@ bool pop(stack& L, int& num) {
 	if (L.top == -1) {
 		return false;
 	}
-	L.data[L.top--] = num;
+	num=L.data[L.top--];
 	return true;
 }
 //出栈   指针指向元素
@@ -76,7 +76,7 @@ bool popelem(stack& L, int& num) {
 	if (L.top == 0) {
 		return false;
 	}
-	L.data[--L.top] = num;
+	num=L.data[--L.top];
 	return true;
 }
 //读栈顶元素
