@@ -1,0 +1,90 @@
+//顺序队列    
+#include<stdio.h>
+#include<stdlib.h>
+#define Maxsize 10
+typedef struct {
+	int data;
+    LinkNode* next;
+}LinkNode;
+typedef struct {
+	LinkNode* front, * rear;
+}LinkQueue;
+//初始化   带头结点
+bool InitQueue(LinkQueue& sq) {
+	sq.front = sq.rear = (LinkNode*)malloc(sizeof(LinkNode));
+	sq.front->next = NULL;
+}
+//初始化   不带头结点
+bool InitQueue(LinkQueue& sq) {
+	sq.front->next = NULL;
+	sq.rear->next = NULL;
+}
+//判空   带头结点
+bool IsEmpty(LinkQueue sq) {
+	if (sq.front->next == NULL) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//判空   不带头结点
+bool IsEmpty(LinkQueue sq) {
+	if (sq.front == NULL) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//入队  带头结点
+void EnQueue(LinkQueue& sq, int elem) {
+	LinkNode* s = (LinkNode*)malloc(sizeof(LinkNode));
+	s->data = elem;
+	s->next = NULL;
+	sq.rear->next = s;
+	sq.rear = s;
+}
+//入队  不带头结点
+void nEnQueue(LinkQueue& sq, int elem) {
+	LinkNode* s = (LinkNode*)malloc(sizeof(LinkNode));
+	s->data = elem;
+	s->next = NULL;
+	if (sq.rear == NULL) {
+		sq.front = sq.rear=s;
+	}
+	else {
+		sq.rear->next = s;
+		sq.rear = s;
+	}
+}
+//出队    带头结点
+bool DeQueue(LinkQueue& sq, int& num) {
+	if (sq.rear == sq.front) {              //队空
+		return false;
+	}
+	LinkNode* q = sq.front->next;
+	int num = q->data;
+	sq.front->next = q->next;
+	if (sq.rear == q) {
+		sq.rear = sq.front;
+	}
+	free(q);
+	return true;
+}
+//出队    带头结点
+bool DeQueue(LinkQueue& sq, int& num) {
+	if (sq.front == NULL) {
+		return false;
+	}
+	LinkNode* q = sq.front;
+	int num = q->data;
+	sq.front = q->next;
+	if (sq.rear == q) {
+		sq.rear = NULL;
+		sq.front = NULL;
+	}
+	free(q);
+	return true;
+}
+//判满 不存在
