@@ -1,0 +1,58 @@
+//顺序队列    
+#include<stdio.h>
+#include<stdlib.h>
+#define Maxsize 10
+typedef struct {
+	int data[Maxsize];
+	int front;
+	int rear;
+}SqQueue;
+// 初始化
+void InitQueue(SqQueue& sq) {
+	sq.front = 0;
+	sq.rear = Maxsize - 1;
+}
+//判空  
+bool QueueEmpty(SqQueue sq) {
+	if ((sq.rear+1)%Maxsize==sq.front) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//判满
+bool QueueFull(SqQueue sq) {
+	if ((sq.rear + 2) % Maxsize == sq.front) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+//入队
+bool EnQueue(SqQueue& sq, int elem) {
+	if ((sq.rear + 2) % Maxsize == sq.front) {     //队列已满
+		return false;
+	}
+	sq.rear = (sq.rear + 1) % Maxsize;
+	sq.data[sq.rear] = elem;
+	return true;
+}
+//出队
+bool DeQueue(SqQueue& sq, int& num) {
+	if ((sq.rear + 1) % Maxsize == sq.front) {
+		return false;
+	}
+	int num = sq.data[sq.front];
+	sq.front = (sq.front + 1) % Maxsize;
+	return true;
+}
+//获得队头元素
+bool GetHead(SqQueue& sq, int& num) {
+	if ((sq.rear + 1) % Maxsize == sq.front) {
+		return false;
+	}
+	int num = sq.data[sq.front];
+	return true;
+}
