@@ -1,4 +1,4 @@
-//顺序队列    
+//链队
 #include<stdio.h>
 #include<stdlib.h>
 #define Maxsize 10
@@ -88,3 +88,21 @@ bool DeQueue(LinkQueue& sq, int& num) {
 	return true;
 }
 //判满 不存在
+//获取队头元素  带头结点
+bool getElem(LinkQueue sq, int& num) {
+	if (sq.front == sq.rear) {
+		return false;
+	}
+	LinkNode* q = sq.front->next;
+	num = q->data;
+	return true;
+}
+//获取队头元素  不带头结点
+bool getElem(LinkQueue sq, int& num) {
+	if (sq.front == NULL) {
+		return false;
+	}
+	LinkNode* q = sq.front;
+	num = q->data;
+	return true;
+}
