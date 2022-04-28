@@ -1,0 +1,29 @@
+//朴素模式匹配算法
+#include<stdio.h>
+#include<stdlib.h>
+#define MaxLEN 255
+//静态分配
+typedef struct {
+	char ch[MaxLEN];
+	int length;
+}SString;
+int Index(SString S, SString T) {
+	int i = 1;
+	int j = 1;
+	while (i <= S.length && j <= T.length) {
+		if (S.ch[i]==T.ch[j]) {
+			++i;
+			++j;
+		}
+		else {
+			j = 1;
+			i = i - j + 2;
+		}
+	}
+	if (j > T.length) {
+		return i - T.length;
+	}
+	else {
+		return 0;
+	}
+}
