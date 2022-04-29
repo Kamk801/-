@@ -1,0 +1,36 @@
+//树的链式存储
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct {
+	int data;
+	TreeNode* lchild;   //三叉链表
+	TreeNode* rchild;
+	TreeNode* parent;
+}TreeNode,*Tree;
+void init(Tree& T) {
+	T = NULL;
+}
+bool root(Tree& T) {
+	TreeNode* root = (Tree)malloc(sizeof(TreeNode*));
+	if (root == NULL) {
+		return false;
+	}
+	root->data = 1;
+	root->lchild = NULL;
+	root->rchild = NULL;
+	root->parent = NULL;
+	T = root;
+	return true;
+}
+bool addleaf(TreeNode *par,int elem) {
+	TreeNode* leaf = (TreeNode*)malloc(sizeof(TreeNode));
+	if (leaf == NULL) {
+		return false;
+	}
+	leaf->data = elem;
+	leaf->lchild = NULL;
+	leaf->rchild = NULL;
+	par->lchild = leaf;
+	leaf->parent = par;
+	return true;
+}
