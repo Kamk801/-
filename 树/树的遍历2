@@ -1,14 +1,13 @@
-//求树的深度
 #include<stdio.h>
 #include<stdlib.h>
 typedef struct {
 	int data;
-	TreeNode* lchild;   //三叉链表
-	TreeNode* rchild;
+	struct TreeNode* lchild;   //三叉链表
+	struct TreeNode* rchild;
 }TreeNode,*Tree;
 typedef struct {
 	TreeNode* leaf;
-	SqNode* next;
+	struct SqNode* next;
 }SqNode;
 typedef struct {
 	SqNode* head;
@@ -68,10 +67,10 @@ void levelOrder(Tree T) {
 		DeQueue(sq, temp);
 		visit(temp);
 		if (temp->lchild != NULL) {
-			enQueue(sq, T->lchild);
+			enQueue(sq, temp->lchild);
 		}
 		if (temp->rchild != NULL) {
-			enQueue(sq, T->rchild);
+			enQueue(sq, temp->rchild);
 		}
 	}
 }
