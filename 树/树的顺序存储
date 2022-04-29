@@ -1,0 +1,16 @@
+//树的顺序存储
+#include<stdio.h>
+#include<stdlib.h>
+#define Maxsize 100
+typedef struct {
+	int data;
+	bool isEmpty;
+}TreeNode;
+void init(TreeNode T[]) {
+	for (int i = 1; i < Maxsize; i++) {
+		T[i].isEmpty = true;
+	}
+}
+int main() {
+	TreeNode T[Maxsize];
+}
