@@ -1,0 +1,21 @@
+//求树的深度
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct {
+	int data;
+	TreeNode* lchild;   //三叉链表
+	TreeNode* rchild;
+	TreeNode* parent;
+}TreeNode,*Tree;
+int length(Tree  T) {
+	int l = 0;
+	int r = 0;
+	if (T == NULL) {
+		return 0;
+	}
+	else {
+		l=length(T->lchild);
+		r=length(T->rchild);
+		return l > r ? l : r;
+	}
+}
