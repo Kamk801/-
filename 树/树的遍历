@@ -1,0 +1,36 @@
+//树的链式存储
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct {
+	int data;
+	TreeNode* lchild;   //三叉链表
+	TreeNode* rchild;
+	TreeNode* parent;
+}TreeNode,*Tree;
+void visit(TreeNode* leaf) {
+	printf("%d", leaf->data);
+}
+//先序遍历
+void preOrder(Tree T) {
+	if (T != NULL) {
+		visit(T);
+		preOrder(T->lchild);
+		preOrder(T->rchild);
+	}
+}
+//中序遍历
+void InOrder(Tree T) {
+	if (T != NULL) {
+		InOrder(T->lchild);
+		visit(T);
+		InOrder(T->rchild);
+	}
+}
+//后序遍历
+void PostOrder(Tree T) {
+	if (T != NULL) {
+		PostOrder(T->lchild);
+		PostOrder(T->rchild);
+		visit(T);
+	}
+}
