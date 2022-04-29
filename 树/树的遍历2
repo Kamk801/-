@@ -1,0 +1,77 @@
+//求树的深度
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct {
+	int data;
+	TreeNode* lchild;   //三叉链表
+	TreeNode* rchild;
+}TreeNode,*Tree;
+typedef struct {
+	TreeNode* leaf;
+	SqNode* next;
+}SqNode;
+typedef struct {
+	SqNode* head;
+	SqNode* rear;
+}SqList;
+//不带头结点
+void initlist(SqList& sq) {
+	sq.head = NULL;
+	sq.rear = NULL;
+}
+void enQueue(SqList& sq, TreeNode* leaf) {
+	SqNode* s = (SqNode *)malloc(sizeof(SqNode));
+	s->leaf = leaf;
+	s->next = NULL;
+	if (sq.head == NULL) {
+		sq.head = sq.rear = s;
+		
+	}
+	else {
+		sq.rear->next = s;
+		sq.rear = s;
+	}
+	
+}
+bool DeQueue(SqList& sq, TreeNode*& e) {
+	if (sq.head == NULL) {
+		return false;
+	}
+	e = sq.head->leaf;
+	SqNode* q = sq.head;
+	sq.head = sq.head->next;
+	if (sq.rear == q) {
+		sq.head = NULL;
+		sq.rear = NULL;
+	}
+	free(q);
+	return true;
+}
+bool IsEmpty(SqList sq) {
+	if (sq.head == NULL) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+void visit(TreeNode* leaf) {
+	printf("%d", leaf->data);
+}
+//层序遍历
+void levelOrder(Tree T) {
+	SqList sq;
+	initlist(sq);
+	TreeNode* temp;
+	enQueue(sq,T);
+	while (!IsEmpty(sq)) {
+		DeQueue(sq, temp);
+		visit(temp);
+		if (temp->lchild != NULL) {
+			enQueue(sq, T->lchild);
+		}
+		if (temp->rchild != NULL) {
+			enQueue(sq, T->rchild);
+		}
+	}
+}
