@@ -11,9 +11,6 @@ typedef struct tree{
 TreeNode* pre = NULL;
 TreeNode* final = NULL;
 TreeNode* p;
-void createinthread(Tree T) {
-
-}
 void inthread(Tree T) {
 	if (T != NULL) {
 		inthread(T->lchild);
