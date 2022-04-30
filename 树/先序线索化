@@ -1,0 +1,38 @@
+//先序线索化
+#include<stdlib.h>
+typedef struct tree{
+	int data;
+	TreeNode *lchild;   //三叉链表
+	TreeNode* rchild;
+	int ltag, rtag ; //1为线索   0为孩子
+}TreeNode,*Tree;
+TreeNode* pre = NULL;
+void createinthread(Tree T) {
+	pre = NULL;
+	if (T != NULL) {
+		inthread(T);
+		if (pre->rchild == NULL) {
+			pre->rtag = 1;
+		}
+	}
+}
+void inthread(Tree T) {
+	if (T != NULL) {
+		visit(T);
+		if (T->ltag == 0) {
+			inthread(T->lchild);
+		}
+		inthread(T->rchild);
+	}
+}
+void visit(TreeNode* leaf) {
+	if (leaf->lchild == NULL) {
+		leaf->lchild = pre;
+		leaf->ltag = 1;
+	}
+	if (pre!=NULL && pre->rchild == NULL) {
+		pre->rchild = leaf;
+		pre->rtag = 1;
+	}
+	pre = leaf;
+}
