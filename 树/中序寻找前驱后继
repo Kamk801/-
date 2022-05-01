@@ -1,4 +1,4 @@
-//中序线索二叉树找后继
+//中序线索二叉树找后继  
 #include<stdlib.h>
 typedef struct tree{
 	int data;
@@ -6,32 +6,61 @@ typedef struct tree{
 	TreeNode* rchild;
 	int ltag, rtag ; //1为线索   0为孩子
 }TreeNode,*Tree;
-
-TreeNode* search(TreeNode* p) {
+TreeNode* pre = NULL;
+TreeNode* firstnode(TreeNode* p) {
 	while (p->ltag == 0) p = p->lchild;
 	return p;
 }
 
 TreeNode*  SearchLchild(TreeNode* p) {
 	if (p->rtag == 0) {
-		return search(p->rchild);
+		return firstnode(p->rchild);
 	}
 	else {
 		return p->lchild;
 	}
 }
-//中序线索二叉树找前驱
+//对中序线索化二叉树进行中序遍历
+void inthread(Tree &T) {
+	for (TreeNode* p = firstnode(T); p != NULL; p = SearchLchild(p)) {
+		visit(p);
+	}
+}
+void visit(TreeNode* p) {
+	if (p->lchild == NULL) {
+		p->lchild = pre;
+		p->ltag = 1;
+	}
+	if (pre->rchild == NULL && pre!=NULL) {
+		pre->rchild = p;
+		pre->rtag = 1;
+	}
+	pre = p;
+}
 
-TreeNode* search(TreeNode* p) {
+
+
+
+
+
+
+//中序线索二叉树找前驱
+TreeNode* lastnode(TreeNode* p) {
 	while (p->rtag == 0) p = p->rchild;
 	return p;
 }
 
-TreeNode* SearchLchild(TreeNode* p) {
+TreeNode* PreLchild(TreeNode* p) {
 	if (p->ltag == 0) {
-		return search(p->lchild);
+		return lastnode(p->lchild);
 	}
 	else {
 		return p->lchild;
+	}
+}
+//对中序线索化二叉树进行逆中序遍历
+void reverse(Tree& T) {
+	for (TreeNode* p = lastnode(T); p != NULL; p = PreLchild(p)) {
+		visit(p);
 	}
 }
