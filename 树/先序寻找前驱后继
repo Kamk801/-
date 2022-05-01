@@ -1,0 +1,35 @@
+//先序线索二叉树找后继  
+#include<stdlib.h>
+typedef struct tree{
+	int data;
+	TreeNode *lchild;   //三叉链表
+	TreeNode* rchild;
+	int ltag, rtag ; //1为线索   0为孩子
+}TreeNode,*Tree;
+TreeNode* pre = NULL;
+
+TreeNode*  nextchild(TreeNode* p) {
+	if (p->ltag==1 && p->rtag == 0) {
+		return p->rchild;
+	}
+	else if(p->ltag==0){
+		return p->lchild;
+	}
+}
+//对先序线索化二叉树进行前序遍历
+void inthread(Tree &T) {
+	for (TreeNode* p = T; p != NULL; p = nextchild(p)) {
+		visit(p);
+	}
+}
+void visit(TreeNode* p) {
+	if (p->lchild == NULL) {
+		p->lchild = pre;
+		p->ltag = 1;
+	}
+	if (pre->rchild == NULL && pre!=NULL) {
+		pre->rchild = p;
+		pre->rtag = 1;
+	}
+	pre = p;
+}
