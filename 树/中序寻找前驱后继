@@ -1,0 +1,37 @@
+//中序线索二叉树找后继
+#include<stdlib.h>
+typedef struct tree{
+	int data;
+	TreeNode *lchild;   //三叉链表
+	TreeNode* rchild;
+	int ltag, rtag ; //1为线索   0为孩子
+}TreeNode,*Tree;
+
+TreeNode* search(TreeNode* p) {
+	while (p->ltag == 0) p = p->lchild;
+	return p;
+}
+
+TreeNode*  SearchLchild(TreeNode* p) {
+	if (p->rtag == 0) {
+		return search(p->rchild);
+	}
+	else {
+		return p->lchild;
+	}
+}
+//中序线索二叉树找前驱
+
+TreeNode* search(TreeNode* p) {
+	while (p->rtag == 0) p = p->rchild;
+	return p;
+}
+
+TreeNode* SearchLchild(TreeNode* p) {
+	if (p->ltag == 0) {
+		return search(p->lchild);
+	}
+	else {
+		return p->lchild;
+	}
+}
