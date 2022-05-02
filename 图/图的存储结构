@@ -1,1 +1,29 @@
-
+//图的储存
+//邻阶矩阵
+#define Maxsize 100
+typedef struct {
+	char vertex[Maxsize];
+	int Edge[Maxsize][Maxsize];
+	int vernum, edgnum;
+}MGraph;
+//带权版
+typedef char vernode;
+typedef int edgnode;
+typedef struct {
+	vernode vertex[Maxsize];
+	edgnode Edge[Maxsize][Maxsize];
+	int vexnum, arcnum;
+}MGraph;
+//邻接表
+typedef struct {
+	char data;
+	arcnode* firstnode;
+}Vertex,list[Maxsize];
+typedef struct {
+	int data;
+	arcnode* next;
+}arcnode;
+typedef struct {
+	list L;
+	int vernum, edgnum;
+}List;
