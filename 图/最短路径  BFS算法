@@ -1,0 +1,57 @@
+#include<stdlib.h>
+#include<stdio.h>
+//最短路径  BFS算法
+//邻阶表
+#define Maxsize 100
+#define infinite 9999
+typedef struct {
+	char vertex[Maxsize];
+	int  edge[Maxsize][Maxsize];
+	int vernum, edgnum;
+}MGraph;
+typedef struct {
+
+}Squeue;
+bool visited[Maxsize];
+int d[Maxsize];
+int path[Maxsize];
+//顶点x的第一个邻接点
+int FirstNeighbour(MGraph G, int x) {
+}
+//顶点x的第一个邻接点y的下一个顶点号
+int NextNeighbour(MGraph G,int x,int y) {
+}
+
+void BFSTree(MGraph G) {
+	for (int k = 1; k <= Maxsize; k++) {
+		visited[k] = 0;
+		d[k] = infinite;
+		path[k] = -1;
+	}
+	Squeue q;
+	init(q);
+	for (int j = 1; j <= G.vernum; j++) {
+		if (!visited[j]) {
+			BFS(G, j);
+		}
+	}
+}
+//需要创建两个数组
+void BFS(MGraph G, int x) {
+	visit(x);
+	visited[x] = 1;
+	d[x] = 0;
+	enqueue(q, x);
+	while (!empty(q)) {
+		dequeue(q, &x); //返回被删去的值x
+		for (int m = FirstNeighbour(G, x); m > 0; m = NextNeighbour(G, x, m)) {
+			if (!visited[m]) {
+				d[m] = d[x] + 1;
+				path[m] = x;
+				visit(m);
+				visited[m] = 1;
+				enqueue(q, m);
+			}
+		}
+	}
+}
