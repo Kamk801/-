@@ -36,8 +36,6 @@ int NextNeighbour(MGraph G,int x,int y) {
 		}
 	}
 }
-void initQueue(Squeue& q) {}
-void EnQueue(Squeue& q, int x) {}
 //BFS
 bool visited[Maxsize];
 void BSTree(MGraph G) {
@@ -52,10 +50,6 @@ void BSTree(MGraph G) {
 		}
 	}
 }
-
-void visit(int x) {}
-void DeQueue(Squeue q,int x){}
-bool empty(Squeue q) {}
 
 void BFS(MGraph G, int x,Squeue q) {
 	visit(x);
