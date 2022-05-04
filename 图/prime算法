@@ -1,0 +1,32 @@
+#include<stdlib.h>
+#include<stdio.h>
+//与答案不同  不知道对错
+//邻阶表
+#define Maxsize 100
+typedef struct {
+	char vertex[Maxsize];
+	int  edge[Maxsize][Maxsize];
+	int vernum, edgnum;
+}MGraph;
+void visit(int x){}
+bool visited[Maxsize];
+void Prime(MGraph G,int x) {
+	visit(x);
+	visited[x] = 1;
+	int min = G.edge[x][1];
+	int k = 1;
+	for (int i = 1; i <= G.vernum; i++) {
+		if (G.edge[x][i] < min) {
+			min = G.edge[x][i];
+			k = i;
+		}
+	}
+	if (!visited[k]) {
+		Prime(G, k);
+	}
+}
+int main() {
+	for (int i = 0; i <= Maxsize; i++) {
+		visited[i] = 0;
+	}
+}
