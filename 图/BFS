@@ -1,0 +1,75 @@
+#include<stdlib.h>
+#include<stdio.h>
+//邻阶矩阵
+#define Maxsize 100
+typedef struct {
+	char vertex[Maxsize];
+	int  Edge[Maxsize][Maxsize];
+	int vernum, edgnum;
+}MGraph;
+//队列
+typedef struct{
+	int top, rear;
+	int size;
+	int data[Maxsize];
+}Squeue;
+
+//顶点x的第一个邻接点
+int FirstNeighbour(MGraph G, int x) {
+	if (G.vernum == 1) {
+		return -1;
+	}
+	for (int i = 1; i <= G.vernum; i++) {
+		if (G.Edge[x, i]) {
+			return i;
+		}
+	}
+}
+//顶点x的第一个邻接点y的下一个顶点号
+int NextNeighbour(MGraph G,int x,int y) {
+	if (y == G.vernum) {
+		return -1;
+	}
+	for (int i = y+1; i <= G.vernum; i++) {
+		if (G.Edge[x, i]) {
+			return i;
+		}
+	}
+}
+void initQueue(Squeue& q) {}
+void EnQueue(Squeue& q, int x) {}
+//BFS
+bool visited[Maxsize];
+void BSTree(MGraph G) {
+	for (int i = 1; i <= G.vernum; i++) {
+		visited[i] = 0;
+	}
+	Squeue q;
+	initQueue(q);
+	for (int i = 1; i <= G.vernum; i++) {
+		if (!visited[i]) {
+			BFS(G, i,q);
+		}
+	}
+}
+
+void visit(int x) {}
+void DeQueue(Squeue q,int x){}
+bool empty(Squeue q) {}
+
+void BFS(MGraph G, int x,Squeue q) {
+	visit(x);
+	visited[x] = 1;
+	EnQueue(q, x);
+	while (!empty(q)) {
+		DeQueue(q, x);
+		for (int m = FirstNeighbour(G, x); m > 0; m = NextNeighbour(G, x, m)) {
+			if(!visited[m]) {
+				visit(m);
+				visited[m] = 1;
+				EnQueue(q, m);
+			}
+		}
+	}
+}
+
