@@ -44,7 +44,7 @@ bool topo(MGraph G) {
 			}
 		}
 	}
-	if (count < G.vernum) {
+	if (count < G.vernum) {      //是否形成回路
 		return false;
 	}
 	else {
