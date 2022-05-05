@@ -8,6 +8,7 @@ typedef struct {
 	int length;
 }SString;
 int next[MaxLEN];
+int nextval[MaxLEN];
 //求next数组
 void initnext(SString s) {
 	for (int i = 0; i < MaxLEN; i++) {
@@ -27,8 +28,21 @@ void initnext(SString s) {
 		}
 	}
 }
+//求nextval数组  若前面有字母与现在的字母一样，避免多一次的比较，进行进一步优化
+void initnextval(SString s) {
+	nextval[1] = 0;
+	for (int i = 2; i <=s.length; i++) {
+		if (s.ch[next[i]] = s.ch[i]) {
+			nextval[i] = next[i];
+		}
+		else {
+			nextval[i] = next[i];
+		}
+	}
+}
 int Index(SString S, SString T) {
 	initnext(S);
+	initnextval(S);
 	int i = 1;
 	int j = 1;
 	while (i <= S.length && j <= T.length) {
@@ -37,7 +51,7 @@ int Index(SString S, SString T) {
 			++j;
 		}
 		else {
-			j = next[j];
+			j = nextval[j];
 		}
 	}
 	if (j > T.length) {
