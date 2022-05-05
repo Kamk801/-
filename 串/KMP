@@ -7,10 +7,31 @@ typedef struct {
 	char ch[MaxLEN];
 	int length;
 }SString;
-int Index(SString S, SString T,int next[]) {
+int next[MaxLEN];
+//求next数组
+void initnext(SString s) {
+	for (int i = 0; i < MaxLEN; i++) {
+		next[i] = 0;
+	}
+	next[1] = 0;
+	int i = 1;
+	int j = 0;
+	while (i < s.length) {
+		if (j == 0 || s.ch[i] == s.ch[j]) {
+			++i;
+			++j;
+			next[i] = j;    //若pi=pj,则next[j+1]=next[j]+1
+		}
+		else {
+			j = next[j];
+		}
+	}
+}
+int Index(SString S, SString T) {
+	initnext(S);
 	int i = 1;
 	int j = 1;
-	while (i <= S.length && j<=T.length) {
+	while (i <= S.length && j <= T.length) {
 		if (j = 0 || S.ch[i] == T.ch[j]) {
 			++i;
 			++j;
