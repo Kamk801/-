@@ -1,0 +1,60 @@
+#include<stdlib.h>
+#include<stdio.h>
+//DFS实现拓扑
+//入度为0先出
+// 从网中删除该顶点与所有以他为起点的有向边
+// 重复直至不存在结点为止
+//邻阶矩阵
+#define Maxsize 100
+typedef struct {
+	char vertex[Maxsize];
+	int arcnode[Maxsize][Maxsize];
+	int vernum, arcnum;
+}MGraph;
+int visited[Maxsize];
+bool DFSTree(MGraph G) {
+	for (int i = 1; i <= Maxsize; i++) {
+		visited[i] = 0;
+	}
+	for (int i = 1; i <= G.vernum; i++) {
+		if (!visited[i]) {
+			DFS(G, i);
+		}
+	}
+	if (count < G.vernum) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+int firstNeighbour(MGraph G, int x) {
+	if (G.vernum == 1) {
+		return -1;
+	}
+	for (int i = 1; i <= G.vernum; i++) {
+		if (G.arcnode[x][i]) {
+			return i;
+		}
+	}
+}
+int nextneighbour(MGraph G, int x, int y) {
+	for (int i = y + 1; i <= G.vernum; i++) {
+		if (G.arcnode[x][i]) {
+			return i;
+		}
+	}
+	return -1;
+}
+int count = 0;
+void visit(int x){}
+void DFS(MGraph G, int x) {
+	count++;
+	visit(x);
+	visited[x] = 1;
+	for (int i = firstNeighbour(G, x); i >0; i = nextneighbour(G, x, i)) {
+		if (!visited[i]) {
+			DFS(G, i);
+		}
+	}
+}
