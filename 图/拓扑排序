@@ -1,6 +1,9 @@
 #include<stdlib.h>
 #include<stdio.h>
-//拓扑排序
+//拓扑排序    
+// 入度为0先出
+// 从网中删除该顶点与所有以他为起点的有向边
+// 重复直至不存在结点为止
 //邻阶表
 #define Maxsize 100
 typedef struct {
