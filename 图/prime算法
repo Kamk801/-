@@ -1,6 +1,6 @@
 #include<stdlib.h>
 #include<stdio.h>
-//与答案不同  不知道对错
+//不知道对错
 //邻阶表
 #define Maxsize 100
 typedef struct {
@@ -16,14 +16,12 @@ void Prime(MGraph G,int x) {
 	int min = G.edge[x][1];
 	int k = 1;
 	for (int i = 1; i <= G.vernum; i++) {
-		if (G.edge[x][i] < min) {
+		if (G.edge[x][i] < min && visited[i]== 0) {
 			min = G.edge[x][i];
 			k = i;
 		}
 	}
-	if (!visited[k]) {
-		Prime(G, k);
-	}
+	Prime(G, k);
 }
 int main() {
 	for (int i = 0; i <= Maxsize; i++) {
