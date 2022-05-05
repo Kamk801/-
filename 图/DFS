@@ -1,5 +1,6 @@
 #include<stdlib.h>
 #include<stdio.h>
+//深度优先
 //邻阶矩阵
 #define Maxsize 100
 typedef struct {
