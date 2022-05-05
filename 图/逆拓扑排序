@@ -1,0 +1,47 @@
+#include<stdlib.h>
+#include<stdio.h>
+//逆拓扑排序    
+// 出度为0先出
+// 从网中删除该顶点与所有以他为结点的有向边
+// 重复直至不存在结点为止
+//邻阶表
+#define Maxsize 100
+typedef struct {
+	char vertex[Maxsize];
+	int arcnode[Maxsize][Maxsize];
+	int vernum, arcnum;
+}MGraph;
+typedef struct {
+
+}stack;
+int outdegree[Maxsize];
+int print[Maxsize];
+bool topo(MGraph G) {
+	stack s;
+	initstack(s);
+	int count = 0;
+	int u;
+	for (int i = 0; i < G.vernum; i++) {
+		if (!outdegree[i]) {
+			push(s, i);
+		}
+	}
+	while (!empty(s)) {
+		pop(s, u);
+		print[count++] = u;
+		for (int i = 1; i <= G.vernum;i++) {
+			if (G.arcnode[i][u] == 1) {
+				--outdegree[i];
+				if (outdegree[i] == 0) {
+					push(s, i);
+				}
+			}
+		}
+	}
+	if (count < G.vernum) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
