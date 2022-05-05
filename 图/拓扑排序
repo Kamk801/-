@@ -22,6 +22,7 @@ typedef struct {
 
 }stack;
 int indegree[Maxsize];
+int print[Maxsize];
 bool topo(MGraph G) {
 	stack s;
 	initstack(s);
@@ -34,7 +35,7 @@ bool topo(MGraph G) {
 	}
 	while (!empty(s)) {
 		pop(s, u);
-		indegree[count++] = u;
+		print[count++] = u;
 		for (arcnode* p = G.L[u].firstarc; p; p = p->next) {
 			int k = p->adjvex;
 			--indegree[k];
