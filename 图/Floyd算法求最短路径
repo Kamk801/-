@@ -1,0 +1,36 @@
+#include<stdlib.h>
+#include<stdio.h>
+//Floyd算法
+//推理允许有中转点
+//若G.arcnode[i][j] > G.arcnode[i][k] + G.arcnode[k][j]
+//则G.arcnode[i][j] = G.arcnode[i][k] + G.arcnode[k][j];
+//path[i][j] = k;
+//否则保持原值
+//邻阶矩阵
+#define Maxsize 100
+typedef struct {
+	char vertex[Maxsize];
+	int arcnode[Maxsize][Maxsize];
+	int vernum, arcnum;
+}MGraph;
+int path[Maxsize][Maxsize];
+void init(MGraph G) {
+	for (int i = 0; i < Maxsize; i++) {
+		for (int j = 0; j < Maxsize; j++) {
+			path[i][j] = -1;
+		}
+}
+	Floyd(G);
+}
+void Floyd(MGraph G) {
+	for (int k = 0; k < G.vernum; k++) {
+		for (int i = 0; i < G.vernum; i++) {
+			for (int j = 0; j < G.vernum; j++) {
+				if (G.arcnode[i][j] > G.arcnode[i][k] + G.arcnode[k][j]) {
+					G.arcnode[i][j] = G.arcnode[i][k] + G.arcnode[k][j];
+					path[i][j] = k;
+				}
+			}
+		}
+	}
+}
