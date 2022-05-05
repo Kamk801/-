@@ -1,6 +1,6 @@
 #include<stdlib.h>
 #include<stdio.h>
-//邻阶矩阵
+//邻阶矩阵   广度优先
 #define Maxsize 100
 typedef struct {
 	char vertex[Maxsize];
