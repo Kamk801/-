@@ -4,7 +4,7 @@
 // 出度为0先出
 // 从网中删除该顶点与所有以他为结点的有向边
 // 重复直至不存在结点为止
-//邻阶表
+//邻阶矩阵
 #define Maxsize 100
 typedef struct {
 	char vertex[Maxsize];
