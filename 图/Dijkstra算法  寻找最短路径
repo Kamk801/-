@@ -31,7 +31,7 @@ bool Dijkstra(MGraph G,int x) {
 			break;
 		}
 	}
-	if (k == G.edgnum - 1) {
+	if (k == G.edgnum) {
 		return true;
 	}
 	for (int i = 1; i < G.vernum; i++) {
