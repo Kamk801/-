@@ -1,0 +1,13 @@
+#include<stdlib.h>
+#include<stdio.h>
+//顺序查找     哨兵查找
+typedef struct {
+	int* data;
+	int length;
+}SSTable;
+int search(SSTable T, int key) {
+	T.data[0] = key;
+	int i;
+	for (i = T.length; T.data[i] != key; --i);
+	return i;
+}
