@@ -1,0 +1,25 @@
+#include<stdlib.h>
+#include<stdio.h>
+//折半查找
+typedef struct {
+	int* data;
+	int length;
+}SSTable;
+int search(SSTable T, int key) {
+	int low = 0;
+	int high = T.length - 1;
+	int mid;
+	while (low <= high) {
+		mid = (low + high) / 2;
+		if (T.data[mid] == key) {
+			return mid;
+		}
+		else if (key < T.data[mid]) {
+			high = mid - 1;
+		}
+		else {
+			low = mid + 1;
+		}
+	}
+	return -1;
+}
