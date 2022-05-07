@@ -1,0 +1,27 @@
+#include<stdlib.h>
+#include<stdio.h>
+
+//希尔排序
+void ShellSort(int A[], int n) {
+	int j, d, i;
+	for (int d = n / 2; d >= 1; d = d / 2) {
+		for (int i = d + 1; i <= n; i += d) {
+			if (A[i] < A[i - d]) {
+				A[0] = A[i];
+				for (j = i - d; A[0] < A[j] && j>0;j-= d) {
+					A[j + d] = A[j];
+				}
+				A[j + d] = A[0];
+			}
+		}
+		for (int i = d+2; i <= n; i += d) {
+			if (A[i] < A[i - d]) {
+				A[0] = A[i];
+				for (j = i - d; A[0] < A[j] && j>0; j -= d) {
+					A[j + d] = A[j];
+				}
+				A[j + d] = A[0];
+			}
+		}
+	}
+}
