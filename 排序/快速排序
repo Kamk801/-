@@ -1,0 +1,22 @@
+#include<stdlib.h>
+#include<stdio.h>
+
+//快速排序
+void QuickSort(int A[], int low, int high) {
+	if (low < high) {
+		int k = propotion(A, low, high);
+		QuickSort(A, low, k - 1);
+		QuickSort(A, k + 1, high);
+	}
+}
+int propotion(int A[], int low, int high) {
+	int temp = A[low];
+	while (low < high) {
+		while (low<high && A[high] >= temp) high--;
+		A[low] = A[high];
+		while (low<high && A[low] <= temp)   low++;
+		A[high] = A[low];
+	}
+	A[low] = temp;
+	return low;
+}
