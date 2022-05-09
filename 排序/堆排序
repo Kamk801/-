@@ -10,7 +10,7 @@ void BuildMaxHeap(int A[], int n) {
 void HeadAdjust(int A[],int n,int k) {
 	A[0] = A[k];
 	for (int i = 2 * k; i <= n; i *= 2) {
-		if (i < n && A[i] < A[i + 1]) {
+		if (i < n && A[i] < A[i + 1]) {      //下方只有一个孩子，则无需对比
 			i++;
 		}
 		if (A[i] < A[0]) {
