@@ -12,40 +12,45 @@ bool final[Maxsize];     //各顶点是否已找到最短路径
 int  dist[Maxsize];      //最短路径长度
 int  path[Maxsize];      //路径上的前驱
 void init(int x) {
-	final[x] = true;
-	for (int i = 0; i < Maxsize; i++) {
-		path[i] = -1;
-		dist[i] = 0;
+	if (x == 0) {
+		final[x] = true;
+		for (int i = 0; i < Maxsize; i++) {
+			path[i] = -1;
+			dist[i] = 0;
+		}
 	}
 }
-bool Dijkstra(MGraph G,int x) {
-	init(x);
+void Dijkstra(MGraph G) {
+	init(0);
 	int min = infinite;
 	int temp;
-	int k = 0;
-	while (k < G.vernum) {    //检测是否全部已找到最短路径
-		if (final[k]==1) {    
-			k++;
+	int num=1;
+	int k=0;
+	int head = 1;
+	while(head<G.vernum){
+		if (final[head]==false) {
+			for (int i = 1; i < G.vernum; i++) {
+				if (G.edge[k][i] != infinite && !final[i]) {
+					dist[i] = dist[i] + G.edge[k][i];
+				}
+			}
+			for (int i = 1; i < G.vernum; i++) {
+				if (dist[i] < min && !final[i]) {
+					min = dist[i];
+					temp = i;
+				}
+			}
+			final[temp] = true;
+			path[temp] = k;
+			num++;
+			k = temp;
 		}
 		else {
+			head++;
+		}
+		if (num == G.vernum) {
 			break;
 		}
-	}
-	if (k == G.edgnum) {
-		return true;
-	}
-	for (int i = 1; i < G.vernum; i++) {
-		if (G.edge[x][i] != infinite && !final[i]) {
-			dist[i] = dist[i] + G.edge[x][i];
-		}
-	}
-	for (int i = 1; i < G.vernum ; i++) {
-		if (dist[i] < min && !final[i]) {
-			min = dist[i];
-			temp = i;
-		}
-	}
-	final[temp] = true;
-	path[temp] = x;
-	return Dijkstra(G, temp);
+	}           
+	
 }
