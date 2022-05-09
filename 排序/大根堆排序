@@ -3,7 +3,7 @@
 //堆排序
 //建立大根堆
 void BuildMaxHeap(int A[], int n) {
-	for (int i = n / 2; i > 0; i--) {
+	for (int i = n / 2; i > 0; i--) {           //从后往前调整所有非终端结点
 		HeadAdjust(A, n, i);
 	}
 }
@@ -17,11 +17,11 @@ void HeadAdjust(int A[],int n,int k) {
 			break;
 		}
 		else {
-			A[k] = A[i];
-			k = i;
+			A[k] = A[i];                 //将A[i]调整至双亲结点
+			k = i;                       //修改k值，以便继续向下筛选
 		}
 	}
-	A[k] = A[0];
+	A[k] = A[0];                                 //将被筛选结点的值放入最终位置
 }
 //大根堆排序
 void HeapSort(int A[], int n) {
