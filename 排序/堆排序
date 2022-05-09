@@ -1,0 +1,38 @@
+#include<stdlib.h>
+#include<stdio.h>
+//堆排序
+//建立大根堆
+void BuildMaxHeap(int A[], int n) {
+	for (int i = n / 2; i > 0; i--) {
+		HeadAdjust(A, n, i);
+	}
+}
+void HeadAdjust(int A[],int n,int k) {
+	A[0] = A[k];
+	for (int i = 2 * k; i <= n; i *= 2) {
+		if (i < n && A[i] < A[i + 1]) {
+			i++;
+		}
+		if (A[i] < A[0]) {
+			break;
+		}
+		else {
+			A[k] = A[i];
+			k = i;
+		}
+	}
+	A[k] = A[0];
+}
+//大根堆排序
+void HeapSort(int A[], int n) {
+	BuildMaxHeap(A, n);                //初始建堆
+	for (int i = n; i > 1; i--) {      //n-1趟的交换和建堆过程
+		swap(A[i], A[1]);              //堆顶元素和堆底元素交换
+		HeadAdjust(A, i - 1,1);        //把剩余的待排序元素整理成堆
+	}
+}
+void swap(int a, int b) {
+	int temp = a;
+	a = b;
+	b = temp;
+}
