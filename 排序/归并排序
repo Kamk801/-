@@ -1,0 +1,37 @@
+#include<stdlib.h>
+#include<stdio.h>
+//归并排序
+int* B = (int*)malloc(sizeof(int));
+
+void Merge(int A[], int low, int high) {
+	if (low < high) {
+		int mid = (low + high) / 2;
+		Merge(A, low, mid);
+		Merge(A, mid + 1, high);
+		MergeSort(A, low, mid, high);
+	}
+}
+void MergeSort(int A[], int low, int mid, int high) {
+	int k = low;
+	int j = mid + 1;
+	int i = low;
+	for (int t = low; t <= high; t++) {
+		B[t] = A[t];
+	}
+	for (i, j; i <= mid && j <= high; k++) {
+		if (B[i] <= B[j]) {
+			A[k] = B[i];
+			i++;
+		}
+		else {
+			A[k] = B[j];
+			j++;
+		}
+	}
+	while (i <= mid) {
+		A[k++] = A[i++];
+	}
+	while (j <= high) {
+		A[k++] = A[j++];
+	}
+}
