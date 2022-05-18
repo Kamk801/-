@@ -1,0 +1,23 @@
+#include<stdlib.h>
+#include<stdio.h>
+//并查集
+#define Maxsize 100
+int resemble[Maxsize];
+//初始化
+void init() {
+	for (int i = 0; i < Maxsize; i++) {
+		resemble[i] = -1;
+	}
+}
+//查    x结点的根结点是谁
+int find(int x) {
+	while (resemble[x] >= 0) {
+		x = resemble[x];
+	}
+	return x;
+}
+//并
+void Union(int root1, int root2) {
+	if (root1 == root2) return;
+	resemble[root2] = root1;
+}
