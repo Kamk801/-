@@ -45,7 +45,7 @@ bool addelem(sqlist& L,int i,int num) {
 }
 
 bool delelem(sqlist& L, int i, int& num) {
-	if (i<1 || i>L.length + 1) {
+	if (i<1 || i>L.length) {
 		printf("输入错误");
 		return false;
 	}
