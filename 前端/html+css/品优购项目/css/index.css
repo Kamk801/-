@@ -1,0 +1,286 @@
+.main {
+    width: 980px;
+    height: 455px;
+    margin-left: 220px;
+    margin-top: 10px;
+}
+
+.focus {
+    float: left;
+    width: 721px;
+    height: 455px;
+}
+
+.newsflash {
+    float: right;
+    width: 250px;
+    height: 455px;
+}
+
+.news {
+    height: 165px;
+    border: 1px solid #e4e4e4;
+}
+
+.news-hd {
+    height: 33px;
+    border-bottom: 1px dotted #e4e4e4;
+    line-height: 33px;
+    padding: 0 15px;
+}
+
+.news-hd h5 {
+    float: left;
+    font-size: 14px;
+}
+
+.news-hd .more {
+    float: right;
+}
+
+.more::after {
+    font-family: 'icomoon';
+    content: '\ea42';
+}
+
+.news-bd {
+    padding: 5px 15px 0;
+}
+
+.news-bd ul li {
+    height: 24px;
+    line-height: 24px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lifeservice {
+    height: 209px;
+    border: 1px solid #e4e4e4;
+    border-top: 0;
+    overflow: hidden;
+}
+
+.lifeservice ul {
+    width: 252px;
+}
+
+.lifeservice ul li {
+    float: left;
+    width: 63px;
+    height: 71px;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    text-align: center;
+}
+
+.lifeservice ul li .phone {
+    display: inline-block;
+    width: 24px;
+    height: 28px;
+    margin-top: 12px;
+    background: url(../images/icons.png) no-repeat;
+    background-position: -19px -15px;
+}
+
+.lifeservice ul li .plane {
+    display: inline-block;
+    width: 24px;
+    height: 28px;
+    margin-top: 12px;
+    background: url(../images/icons.png) no-repeat;
+    background-position: -78px -16px;
+}
+
+.bargain {
+    margin-top: 5px;
+}
+
+.recommend {
+    height: 163px;
+    margin-top: 12px;
+}
+
+.recom-hd {
+    float: left;
+    height: 163px;
+    width: 205px;
+    background-color: rgb(92, 82, 81);
+    text-align: center;
+    padding-top: 20px;
+}
+
+.recom-hd img {
+    height: 120px;
+    width: 100px;
+}
+
+.recom-bd {
+    float: left;
+}
+
+.recom-bd ul li {
+    position: relative;
+    float: left;
+}
+
+.recom-bd ul li img {
+    height: 163px;
+    width: 248px;
+}
+
+.recom-bd ul li:nth-child(-n+3):after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 10px;
+    width: 1px;
+    height: 145px;
+    background-color: #ccc;
+}
+
+.fonds {
+    height: 250px;
+    margin-top: 12px;
+
+}
+
+.fonds-hd {
+    width: 1202px;
+    height: 30px;
+    line-height: 30px;
+    padding-right: 12px;
+}
+
+.fonds-hd h5 {
+    float: left;
+    font-size: 16px;
+    font-weight: normal;
+    color: black;
+}
+
+.fonds-hd span {
+    float: right;
+    font-size: 12px;
+}
+
+.fonds-hd span::after {
+    font-family: 'icomoon';
+    content: '\ea42';
+    margin-left: 3px;
+}
+
+.fonds-bd {
+    height: 195px;
+    border: 1px solid #ccc;
+    width: 1202px;
+}
+
+.fonds-bd ul li {
+    width: 200px;
+    float: left;
+    padding: 0 30px;
+
+}
+
+.fonds-bd ul li img {
+    height: 130px;
+    width: 140px;
+}
+
+.fonds-bd ul li h5 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 24px;
+}
+
+.fonds-bd ul li h5 a {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.fonds-bd ul li p {
+    color: #c81623;
+}
+
+.fonds-bd ul li p span {
+    font-size: 16px;
+}
+
+.box-hd {
+    height: 30px;
+    border-bottom: 2px solid #c81623;
+}
+
+.box-hd h3 {
+    float: left;
+    font-size: 18px;
+    color: #c81623;
+    font-weight: normal;
+}
+
+.tablist {
+    float: right;
+    line-height: 30px;
+}
+
+.tablist ul li {
+    float: left;
+}
+
+.tablist ul li:nth-child(-n+8):after {
+    content: '|';
+    margin: 0 15px;
+}
+
+.floor .w {
+    margin-top: 30px;
+}
+
+.box-bd {
+    height: 361px;
+    background-color: #efefef;
+
+}
+
+.table_list_item div {
+    float: left;
+}
+
+.col_210 {
+    width: 210px;
+    text-align: center;
+}
+
+.col_210 ul li {
+    float: left;
+    width: 85px;
+    height: 34px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    line-height: 33px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.col_210 ul {
+    padding-left: 12px;
+}
+
+.col_329 {
+    width: 329px;
+}
+
+.col_221 {
+    width: 221px;
+}
+
+.bb {
+    display: block;
+    border-bottom: 2px solid #efefef;
+}
+
+.col_219 {
+    width: 219px;
+}
